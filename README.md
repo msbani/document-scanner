@@ -57,12 +57,14 @@ Make sure your input file (`scanned-form.jpg`) is in the same directory as the s
 
 ## Example
 - **Input Image:**
-
-![Input Image](scanned-form.jpg)
+<p align="center">
+   <img src="scanned-form.jpg" alt="input Preview" width="480">
+</p>
 
 - **Output Image:**
-
-![Output Image](scanned-output.jpg)
+<p align="center">
+   <img src="scanned-output.jpg" alt="output Preview" width="480">
+</p>
 
 ## Advantages
 
