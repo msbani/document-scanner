@@ -3,17 +3,43 @@
 
 This project implements a **Document Scanner** using Python and OpenCV. The scanner detects the four corner points of a document using edge detection and contour approximation, then applies a **perspective transformation** to generate a top-down, flattened, and enhanced version of the scanned document.
 
+## Example
+- **Input Image:**
+<p align="center">
+   <img src="scanned-form.jpg" alt="input Preview" width="480">
+</p>
+
+- **Output Image:**
+<p align="center">
+   <img src="scanned-output.jpg" alt="output Preview" width="480">
+</p>
+
 ## Features
 
 - **Automatic Edge Detection:** Detects document boundaries using the Canny edge detector.
+```bash
+edged = cv2.Canny(blurred, 75, 200)
+```
 
 - **Contour Approximation:** Finds and approximates contours to identify a quadrilateral (the document outline).
+```bash
+approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+```
 
 - **Perspective Transformation:** Warps the document to produce a corrected, rectangular scan.
+```bash
+warped = four_point_transform(orig, doc_cnt.reshape(4, 2))
+```
 
 - **Automatic Output Saving:** Saves the scanned document as a new image file (`scanned-output.jpg`).
+```bash
+cv2.imwrite(output_path, warped)
+```
 
 - **Lightweight and Fast:** Uses only basic OpenCV operations without heavy deep learning models.
+```bash
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+```
 
 ## How It Works
 1. **Load the Image:** The application reads the input document image (`scanned-form.jpg`).
@@ -55,17 +81,6 @@ Make sure your input file (`scanned-form.jpg`) is in the same directory as the s
 - The processed and warped document is displayed in a new window.
 - The scanned image is automatically saved as scanned-output.jpg in the project folder.
 
-## Example
-- **Input Image:**
-<p align="center">
-   <img src="scanned-form.jpg" alt="input Preview" width="480">
-</p>
-
-- **Output Image:**
-<p align="center">
-   <img src="scanned-output.jpg" alt="output Preview" width="480">
-</p>
-
 ## Advantages
 
 - Works offline, no heavy dependencies
@@ -76,7 +91,3 @@ Make sure your input file (`scanned-form.jpg`) is in the same directory as the s
 
 - Performance may vary under poor lighting or if the document edges are unclear.
 - Works best for flat, single-document images with strong contrast.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvement, feel free to open an issue or create a pull request.
